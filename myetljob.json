@@ -1,0 +1,180 @@
+{
+	"jobConfig": {
+		"name": "myetljob",
+		"description": "",
+		"role": "arn:aws:iam::767397934638:role/Crawler",
+		"command": "glueetl",
+		"version": "4.0",
+		"runtime": null,
+		"workerType": "G.1X",
+		"numberOfWorkers": 10,
+		"maxCapacity": 10,
+		"maxRetries": 0,
+		"timeout": 2880,
+		"maxConcurrentRuns": 1,
+		"security": "none",
+		"scriptName": "myetljob.py",
+		"scriptLocation": "s3://aws-glue-assets-767397934638-us-east-1/scripts/",
+		"language": "python-3",
+		"spark": true,
+		"sparkConfiguration": "standard",
+		"jobParameters": [],
+		"tags": [],
+		"jobMode": "VISUAL_MODE",
+		"createdOn": "2024-03-12T06:45:23.515Z",
+		"developerMode": false,
+		"connectionsList": [
+			"Redshift connection"
+		],
+		"temporaryDirectory": "s3://aws-glue-assets-767397934638-us-east-1/temporary/",
+		"logging": true,
+		"glueHiveMetastore": true,
+		"etlAutoTuning": false,
+		"metrics": true,
+		"observabilityMetrics": true,
+		"bookmark": "job-bookmark-disable",
+		"sparkPath": "s3://aws-glue-assets-767397934638-us-east-1/sparkHistoryLogs/",
+		"flexExecution": false,
+		"minFlexWorkers": null
+	},
+	"dag": {
+		"node-1710225665423": {
+			"nodeId": "node-1710225665423",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [],
+			"name": "Amazon S3",
+			"generatedNodeName": "AmazonS3_node1710225665423",
+			"classification": "DataSource",
+			"type": "S3",
+			"isCatalog": true,
+			"database": "database",
+			"table": "aws_glue_etl_proj",
+			"partitionPredicate": "",
+			"additionalOptions": {
+				"boundedSize": null,
+				"boundedFiles": null,
+				"boundedOption": null
+			},
+			"calculatedType": "CatalogS3DataSource",
+			"codeGenVersion": 2
+		},
+		"node-1710225667262": {
+			"nodeId": "node-1710225667262",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1710225665423"
+			],
+			"name": "Amazon Redshift",
+			"generatedNodeName": "AmazonRedshift_node1710225667262",
+			"classification": "DataSink",
+			"type": "AmazonRedshift",
+			"streamingBatchInterval": 100,
+			"data": {
+				"accessType": "connection",
+				"sourceType": "table",
+				"connection": {
+					"value": "Redshift connection",
+					"label": "Redshift connection",
+					"description": "-"
+				},
+				"schema": {
+					"value": "public",
+					"label": "public",
+					"description": null
+				},
+				"catalogDatabase": null,
+				"catalogRedshiftTable": null,
+				"catalogRedshiftSchema": null,
+				"table": {
+					"value": "records",
+					"label": "records",
+					"description": "public"
+				},
+				"catalogTable": null,
+				"tempDir": "s3://aws-glue-assets-767397934638-us-east-1/temporary/",
+				"iamRole": null,
+				"sampleQuery": null,
+				"preAction": null,
+				"postAction": null,
+				"action": "append",
+				"tableSchema": [
+					{
+						"value": "passengerid",
+						"label": "passengerid",
+						"description": "BIGINT"
+					},
+					{
+						"value": "survived",
+						"label": "survived",
+						"description": "BIGINT"
+					},
+					{
+						"value": "pclass",
+						"label": "pclass",
+						"description": "BIGINT"
+					},
+					{
+						"value": "name",
+						"label": "name",
+						"description": "VARCHAR"
+					},
+					{
+						"value": "sex",
+						"label": "sex",
+						"description": "VARCHAR"
+					},
+					{
+						"value": "age",
+						"label": "age",
+						"description": "DOUBLE PRECISION"
+					},
+					{
+						"value": "sibsp",
+						"label": "sibsp",
+						"description": "BIGINT"
+					},
+					{
+						"value": "parch",
+						"label": "parch",
+						"description": "BIGINT"
+					},
+					{
+						"value": "ticket",
+						"label": "ticket",
+						"description": "VARCHAR"
+					},
+					{
+						"value": "fare",
+						"label": "fare",
+						"description": "DOUBLE PRECISION"
+					},
+					{
+						"value": "cabin",
+						"label": "cabin",
+						"description": "VARCHAR"
+					},
+					{
+						"value": "embarked",
+						"label": "embarked",
+						"description": "VARCHAR"
+					}
+				],
+				"selectedColumns": [],
+				"crawlerConnection": null,
+				"tablePrefix": null,
+				"upsert": false,
+				"mergeAction": "simple",
+				"mergeWhenMatched": "update",
+				"mergeWhenNotMatched": "insert",
+				"mergeClause": null,
+				"stagingTable": "public.records_temp_qn7aie",
+				"advancedOptions": []
+			},
+			"calculatedType": "",
+			"codeGenVersion": 2
+		}
+	},
+	"hasBeenSaved": false
+}
