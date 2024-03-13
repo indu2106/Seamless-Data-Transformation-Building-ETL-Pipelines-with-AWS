@@ -24,7 +24,7 @@ The architecture of the ETL process is as follows:
 ### IAM Setup
 #### Create IAM Roles:
 - Create an IAM role for Glue service with permissions to access S3 buckets and Redshift clusters.
-- Attach policies like AmazonS3ReadOnlyAccess and AmazonRedshiftFullAccess to the IAM role.
+- Attach policies like AWSGlueServiceRole , AmazonS3ReadOnlyAccess and AmazonRedshiftFullAccess to the IAM roles.
 #### Attach IAM Roles:
 
 - Attach the IAM role created for Glue service to the AWS Glue Crawlers and Glue Jobs for access to S3 and Redshift resources.
